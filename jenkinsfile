@@ -1,0 +1,25 @@
+pipeline{
+    agent any
+    stages{
+        stage('git clone'){
+            step{
+                git branch: 'main', url: 'https://github.com/shazforiot/Samplefirstproject.git'
+            }
+        }
+        stage('Mvn Test'){
+            step{
+             sh 'mvn test'
+            }
+        }
+        stage('mvn build'){
+            step{
+                sh 'mvn package'
+            }
+        }
+        stage('mvn deploy'){
+            step{
+                echo 'Deploy application to the node'
+            }
+        }
+    }
+}
